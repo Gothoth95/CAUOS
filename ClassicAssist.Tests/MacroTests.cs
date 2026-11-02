@@ -105,6 +105,18 @@ namespace ClassicAssist.Tests
         }
 
         [TestMethod]
+        public void UOSCommentLinesPreserveSemicolons()
+        {
+            UOSTeamScriptRunner runner = new UOSTeamScriptRunner();
+            Assert.IsTrue( runner.LoadScript(
+                "# A comment; the word after this separator is not a command.\nstop" ) );
+
+            Assert.IsTrue( runner.ExecuteAll() );
+            Assert.IsTrue( runner.Context.StopRequested );
+            Assert.AreEqual( 2, runner.Context.CurrentLineNumber );
+        }
+
+        [TestMethod]
         public void UOSWhileFalseSkipsItsBody()
         {
             UOSTeamScriptRunner runner = new UOSTeamScriptRunner();

@@ -104,7 +104,7 @@ else
   sysmsg 'FAIL: one or more attribute/resistance expressions.'
 endif
 
-# These predicates depend on the character state; either result is valid.
+# These predicates depend on the character state. Either result is valid.
 if dead 'self' or not dead 'self'
   sysmsg 'PASS: dead predicate evaluated.'
 endif

@@ -363,6 +363,15 @@ namespace ClassicAssist.Scripting.UOSteam
 
         private static IEnumerable<string> SplitStatements( string line )
         {
+            string trimmedLine = line.TrimStart();
+
+            if ( trimmedLine.StartsWith( "//", StringComparison.Ordinal ) ||
+                 trimmedLine.StartsWith( "#", StringComparison.Ordinal ) )
+            {
+                yield return line;
+                yield break;
+            }
+
             StringBuilder statement = new StringBuilder();
             char quote = '\0';
 
