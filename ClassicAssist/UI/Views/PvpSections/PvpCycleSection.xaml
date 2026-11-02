@@ -1,0 +1,36 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:ClassicAssist.Shared.Resources;assembly=ClassicAssist.Shared"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             x:Class="ClassicAssist.UI.Views.PvpSections.PvpCycleSection">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="4">
+            <Button Content="{x:Static resources:Strings.Target_Next_PvP_Enemy}" Command="{Binding TargetNextPvpEnemyCommand}" Margin="0,0,0,10" />
+            <GroupBox Header="{x:Static resources:Strings.Target_Next_PvP_Notoriety}">
+                <StackPanel Margin="5">
+                    <CheckBox Content="Innocent" IsChecked="{Binding CurrentOptions.TargetNextPvpIncludeInnocent}" />
+                    <CheckBox Content="Gray / Attackable" IsChecked="{Binding CurrentOptions.TargetNextPvpIncludeGray}" />
+                    <CheckBox Content="Criminal" IsChecked="{Binding CurrentOptions.TargetNextPvpIncludeCriminal}" />
+                    <CheckBox Content="Enemy" IsChecked="{Binding CurrentOptions.TargetNextPvpIncludeEnemy}" />
+                    <CheckBox Content="Murderer" IsChecked="{Binding CurrentOptions.TargetNextPvpIncludeMurderer}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static resources:Strings.Target_History_Size}" Margin="0,10,0,0"
+                      ToolTip="{x:Static resources:Strings.Target_History_Size_Hint}">
+                <DockPanel Margin="5">
+                    <Label Content="{x:Static resources:Strings.Target_History_Size}" DockPanel.Dock="Left" />
+                    <xctk:IntegerUpDown Minimum="1" Maximum="20" Value="{Binding CurrentOptions.TargetHistorySize}"
+                                        Width="50" UpdateValueOnEnterKey="True" DockPanel.Dock="Right"
+                                        Margin="10,0,0,0" />
+                </DockPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

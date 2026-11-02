@@ -1,0 +1,240 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  CLASSIC ASSISTANT - GOTHIC HUD PREVIEW                     ║
+║                         Tema Gotico Drammatico                              ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ANTEPRIMA LAYOUT PRINCIPALE
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ╔═══════════════════════════════════════════════════════════════════════╗   │
+│ ║  │ │ CLASSIC ASSISTANT                           ─ ◻ ✕  │           ║   │
+│ ║  └─────────────────────────────────────────────────────────────────┘   ║   │
+│ │░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│   │
+│ │ │ ┌─────────────────────────┐  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓   │   │
+│ │ │ │ ★ General              │  ┃ Contenuto Tab Selezionato  ┃   │   │
+│ │ │ │                         │  ┃                            ┃   │   │
+│ │ │ │ ⬤ Options              │  ┃ [Tab attualmente visibile] ┃   │   │
+│ │ │ │                         │  ┃                            ┃   │   │
+│ │ │ │ ⬚ Hotkeys              │  ┃  Con tema gotico:          ┃   │   │
+│ │ │ │                         │  ┃  • Bordi viola intensi    ┃   │   │
+│ │ │ │ ⬚ Macros               │  ┃  • Ombra profonda        ┃   │   │
+│ │ │ │                         │  ┃  • Background nero       ┃   │   │
+│ │ │ │ ⬚ Skills               │  ┃  • Testo bianco freddo   ┃   │   │
+│ │ │ │                         │  ┃                            ┃   │   │
+│ │ │ │ ⬚ Agents               │  ┃                            ┃   │   │
+│ │ │ │                         │  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛   │   │
+│ │ │ └─────────────────────────┘                                 │   │   │
+│ │ └───────────────────────────────────────────────────────────────┘   │   │
+│ └─────────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PALETTE COLORI GOTICA
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Background Colori:                                                          │
+│ ┌──────────────────┐  Nero Profondo          #0F0C0F (main background)      │
+│ │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│  Molto usato come base                                 │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Viola Scuro            #1A1520 (tab panels)          │
+│ │░░░░░░░░░░░░░░░░░░│  Usato per separazioni                               │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Viola Medio            #251C35 (secondary bg)        │
+│ │▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│  Usato per variazioni                                 │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Viola Intenso          #2D1F3D (hover states)        │
+│ │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│  Usato per interattività                              │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Viola Drammatico       #9333EA (accent PRIMARY!)     │
+│ │███████████████░░│  ★ Colore principale accent ★                         │
+│ └──────────────────┘  Usato per bordi, glow, highlight                     │
+│                                                                             │
+│ Foreground Colori:                                                          │
+│ ┌──────────────────┐  Bianco Freddo          #F5F0F8 (main text)          │
+│ │     TESTO        │  Alta contrasto, leggibile al 100%                    │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Argento                #D4C5DB (secondary text)      │
+│ │    testo seco    │  Per etichette e testo secondario                     │
+│ └──────────────────┘                                                        │
+│                                                                             │
+│ ┌──────────────────┐  Grigio-Viola           #8B7BA8 (disabled text)       │
+│ │   testo scuro    │  Per elementi disabilitati                            │
+│ └──────────────────┘                                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ZONE DEL TEMA
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  HEADER PRINCIPALE                                                           │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓   │
+│  ║ │ CLASSIC ASSISTANT                                              ║   │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛   │
+│  • Background: #1A1520 (Viola scuro)                                        │
+│  • Bordo: #9333EA 2px (Viola drammatico)                                    │
+│  • Linee verticali d'accento ai lati                                        │
+│  • Titolo: Bianco freddo con letter-spacing                                 │
+│  • Effetto Ombra: GothicShadow (nera, 3px profondità)                       │
+│                                                                              │
+│  TAB PANEL SINISTRO                                                          │
+│  ┌────────────────────────┐                                                 │
+│  │ ★ General              │ ← Selected: Viola #9333EA border                │
+│  │                        │   Highlight glow viola                          │
+│  ├────────────────────────┤                                                 │
+│  │ ⬚ Options              │ ← Not Selected: Viola #4A2860 border            │
+│  │ ⬚ Hotkeys              │   Testo: #D4C5DB (argento)                      │
+│  │ ⬚ Macros               │   Al hover: Background #2D1F3D (viola)          │
+│  │ ⬚ Skills               │   Al hover: Border #8B5CF6 (viola chiaro)       │
+│  │ ⬚ Agents               │   Al hover: Glow 40% opacità                    │
+│  │ ⬚ Public Macros        │                                                 │
+│  │ ⬚ Item Browser         │ Animazione smooth 300ms                          │
+│  │ ⬚ PvP                  │                                                 │
+│  │ ⬚ About                │                                                 │
+│  └────────────────────────┘                                                 │
+│  • Background: #1A1520 (viola scuro)                                        │
+│  • Bordo: #6B2C91 2px                                                       │
+│  • Effect: GothicShadow                                                     │
+│  • Corner Radius: 12px (medievale)                                          │
+│  • Separatore: #9333EA 60% opacità, 8px spessore                            │
+│                                                                              │
+│  CONTENT AREA (DESTRA)                                                       │
+│  ┌──────────────────────────────────────────────────────┐                   │
+│  │ [Contenuto del Tab Selezionato]                      │                   │
+│  │                                                      │                   │
+│  │ Background: #0F0C0F (nero profondo)                  │                   │
+│  │ Bordo: #8B5CF6 2px (viola chiaro)                    │                   │
+│  │ Effect: GothicShadow                                 │                   │
+│  │ Corner Radius: 16px                                  │                   │
+│  │ Padding: 18px                                        │                   │
+│  │                                                      │                   │
+│  └──────────────────────────────────────────────────────┘                   │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+EFFETTI E ANIMAZIONI
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ GothicPulseAnimation (Pulsazione):                                           │
+│                                                                              │
+│ Opacità nel tempo:                                                           │
+│ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                  │
+│ 100% │         ▁▂▃▄▅▆▇▇▆▅▄▃▂▁         ▁▂▃▄▅▆▇▇▆▅▄▃▂▁                       │
+│      │        ▐         ▌             ▐         ▌                          │
+│  70% │────────           ──────────────           ──────────────            │
+│      │  0s             2s             4s                                   │
+│                                                                              │
+│ • Durata: 2 secondi per ciclo                                               │
+│ • Ciclo infinito con auto-reverse                                           │
+│ • Crea effetto "breathing" gotico                                           │
+│ • Applicato su elementi importanti                                          │
+│                                                                              │
+│ GothicHoverAnimation (Transizione Hover):                                    │
+│                                                                              │
+│ Opacità:        1.0 ────────────► 0.85                                      │
+│ Colore Border:  --- ────────────► #9333EA (viola)                           │
+│ Durata:         300ms (smooth)                                              │
+│                                                                              │
+│ • Feedback immediato su mouseover                                           │
+│ • Transizione smooth da 0% a 40% di glow                                    │
+│ • Applicato su tab items e button hover                                     │
+│                                                                              │
+│ GothicShadow (Ombra Profonda):                                              │
+│                                                                              │
+│ ┌──────────────────┐                                                        │
+│ │                  │ ▼ ShadowDepth: 3px                                    │
+│ │  Elemento UI     │ ▼ BlurRadius: 8px                                     │
+│ │                  │ ▼ Color: #1A0F2E (viola nero)                         │
+│ ├──────────────────┤ ▼ Opacity: 80%                                        │
+│ ╲━━━━━━━━━━━━━━━━━╱   (Ombra visibile, non eccessiva)                      │
+│  ╲  ░░░░░░░░░░░  ╱                                                          │
+│   ╲░░░░░░░░░░░░░╱                                                           │
+│                                                                              │
+│ • Crea profondità e separazione visiva                                      │
+│ • Mantiene contrasto leggibile                                              │
+│ • Effetto "sollevato" per elementi importanti                               │
+│                                                                              │
+│ GothicGlow (Glow Viola - NON USATO ATTUALMENTE):                            │
+│                                                                              │
+│ • Disponibile per effetti futuri                                            │
+│ • Color: #9333EA (viola drammatico)                                         │
+│ • BlurRadius: 12px (più diffuso dell'ombra)                                 │
+│ • Opacity: 40% (sottile, non invadente)                                     │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPORTAMENTO INTERATTIVO
+
+Tab Item State Machine:
+
+┌─────────────┐      Mouse Enter      ┌──────────────┐
+│   Default   │ ─────────────────────► │ Mouse Over   │
+│             │                        │              │
+│ BG: #251C35 │                        │ BG: #2D1F3D  │
+│ Border: #4A │                        │ Border: #8B  │
+│ Glow: OFF   │                        │ Glow: 40%    │
+│             │                        │ Text: #D4C5  │
+└─────────────┘◄─────────────────────┐└──────────────┘
+               Mouse Exit             │
+                                      │ Click
+                                      ▼
+                                ┌──────────────┐
+                                │  Selected    │
+                                │              │
+                                │ BG: #3D2847  │
+                                │ Border: #933 │
+                                │ Glow: 100%   │
+                                │ Text: #F5F0  │
+                                └──────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPATIBILITÀ E NOTE
+
+✓ Framework: .NET Framework 4.8+
+✓ Visual Studio: 2019, 2022
+✓ Windows: 10, 11
+✓ XAML: Standard WPF (nessuna proprieta non-standard)
+✓ Performance: GPU-accelerated, minimo impatto CPU
+✓ Font: Segoe UI Variable (Windows 10+) con fallback
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TEMA: GOTICO DRAMMATICO
+
+Il tema è stato designato per evocare:
+✦ Atmosfera medievale/fantasy
+✦ Eleganza drammatica
+✦ Intuitività visiva
+✦ Alto contrasto per leggibilità
+✦ Animazioni fluide e responsive
+
+Colori Primari:
+🖤 Nero: #0F0C0F (Profondità, background principale)
+💜 Viola: #9333EA (Accento, drama, attenzione)
+🤍 Argento: #F5F0F8 (Testo, contrasto)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Per compilare ed applicare il tema:
+1. Apri ClassicAssist.sln in Visual Studio
+2. Build → Rebuild Solution
+3. Run l'applicazione
+4. Osserva il nuovo tema gotico in azione!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Data: 29 Aprile 2026
+Status: Completo e pronto per compilazione

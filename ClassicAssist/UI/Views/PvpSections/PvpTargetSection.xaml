@@ -1,0 +1,45 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:ClassicAssist.Shared.Resources;assembly=ClassicAssist.Shared"
+             xmlns:headered="clr-namespace:ClassicAssist.Controls.Headered;assembly=ClassicAssist.Controls"
+             xmlns:controls="clr-namespace:ClassicAssist.Controls;assembly=ClassicAssist.Controls"
+             xmlns:misc1="clr-namespace:ClassicAssist.UI.Misc"
+             xmlns:data="clr-namespace:ClassicAssist.Data"
+             xmlns:optionsTab="clr-namespace:ClassicAssist.UI.Views.OptionsTab"
+             x:Class="ClassicAssist.UI.Views.PvpSections.PvpTargetSection">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="4">
+            <headered:HorizontalHeaderedComboBox Header="{x:Static resources:Strings.Smart_last_target_}"
+                                                 ItemsSource="{Binding Source={misc1:EnumBindingSource {x:Type data:SmartTargetOption}}}"
+                                                 SelectedItem="{Binding CurrentOptions.SmartTargetOption, Mode=TwoWay}" />
+            <headered:HorizontalHeaderedTextBox Header="{x:Static resources:Strings.Last_target_message_  }"
+                                                Text="{Binding CurrentOptions.LastTargetMessage}" />
+            <headered:HorizontalHeaderedTextBox Header="{x:Static resources:Strings.Friend_target_message_}"
+                                                Text="{Binding CurrentOptions.FriendTargetMessage}" />
+            <headered:HorizontalHeaderedTextBox Header="{x:Static resources:Strings.Friend_target_self_message_}"
+                                                Text="{Binding CurrentOptions.FriendTargetSelfMessage}" />
+            <headered:HorizontalHeaderedTextBox Header="{x:Static resources:Strings.Enemy_target_message_}"
+                                                Text="{Binding CurrentOptions.EnemyTargetMessage}" />
+            <headered:HorizontalHeaderedTextBox Header="{x:Static resources:Strings.Enemy_target_self_message_}"
+                                                Text="{Binding CurrentOptions.EnemyTargetSelfMessage}" />
+            <controls:OptionedCheckBoxControl IsChecked="{Binding CurrentOptions.RangeCheckLastTarget}"
+                                              Content="{x:Static resources:Strings.Range_check_last_target}">
+                <controls:OptionedCheckBoxControl.ChildContent>
+                    <TextBox Width="44" Margin="8,0,0,0" Text="{Binding CurrentOptions.RangeCheckLastTargetAmount}" />
+                </controls:OptionedCheckBoxControl.ChildContent>
+            </controls:OptionedCheckBoxControl>
+            <CheckBox IsChecked="{Binding CurrentOptions.PreventTargetingInnocentsInGuardzone}"
+                      Content="{x:Static resources:Strings.Prevent_targeting_innocents_in_guardzone}" />
+            <CheckBox IsChecked="{Binding CurrentOptions.PreventAttackingInnocentsInGuardzone}"
+                      Content="{x:Static resources:Strings.Prevent_attacking_innocents_in_guardzone}" />
+            <optionsTab:QueueLastTargetControl DataContext="{Binding}" Margin="0,6,0,0" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

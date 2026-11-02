@@ -1,0 +1,25 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:ClassicAssist.Shared.Resources;assembly=ClassicAssist.Shared"
+             x:Class="ClassicAssist.UI.Views.PvpSections.PvpColorsSection">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="4">
+            <TextBlock Text="{x:Static resources:Strings.PvP_target_message_colors}" Foreground="{DynamicResource ForegroundColor3Brush}" Margin="0,0,0,8" />
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Innocent"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyInnocent}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Innocent" /></Grid>
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Ally"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyAlly}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Ally" /></Grid>
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Gray / Attackable"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyAttackable}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Attackable" /></Grid>
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Criminal"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyCriminal}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Criminal" /></Grid>
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Enemy"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyEnemy}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Enemy" /></Grid>
+            <Grid Margin="0,0,0,6"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Murderer"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyMurderer}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Murderer" /></Grid>
+            <Grid Margin="0,0,0,10"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Invulnerable"/><TextBlock Grid.Column="1" Text="{Binding CurrentOptions.HueNotorietyInvulnerable}" FontFamily="Consolas"/><Button Grid.Column="2" Content="Palette" Command="{Binding SelectNotorietyHueCommand}" CommandParameter="Invulnerable" /></Grid>
+            <Button Content="{x:Static resources:Strings.Test_notoriety_message_colors}" HorizontalAlignment="Left" Command="{Binding TestNotorietyHueCommand}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

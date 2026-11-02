@@ -1,0 +1,23 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:ClassicAssist.Shared.Resources;assembly=ClassicAssist.Shared"
+             x:Class="ClassicAssist.UI.Views.PvpSections.PvpFriendlySection">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="4">
+            <Button Content="{x:Static resources:Strings.Target_Next_Friendly}" Command="{Binding TargetNextFriendlyCommand}" Margin="0,0,0,10" />
+            <GroupBox Header="{x:Static resources:Strings.Target_Next_Friendly_filters}">
+                <StackPanel Margin="5">
+                    <CheckBox Content="{x:Static resources:Strings.Target_Next_Friendly_include_ally}" IsChecked="{Binding CurrentOptions.TargetNextFriendlyIncludeAlly}" />
+                    <CheckBox Content="{x:Static resources:Strings.Target_Next_Friendly_include_friends}" IsChecked="{Binding CurrentOptions.TargetNextFriendlyIncludeFriends}" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

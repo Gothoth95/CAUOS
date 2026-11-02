@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassicAssist 5.0.1 - Preview GUI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #1a1520;
+            --bg-light: #f5f0f8;
+            --text-dark: #f5f0f8;
+            --text-light: #1a1520;
+            --accent: #9333ea;
+            --accent-dark: #6b2c91;
+            --border: #6b2c91;
+            --secondary-bg: #2d1f3d;
+            --inner-bg: #3d2847;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* TITLEBAR */
+        .titlebar {
+            background: #1a1520;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px;
+            box-shadow: 0 4px 8px rgba(147, 51, 234, 0.3);
+        }
+
+        .titlebar-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .titlebar-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .titlebar-btn {
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .titlebar-btn:hover {
+            background: rgba(147, 51, 234, 0.2);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            margin: 0 8px 8px 8px;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            background: var(--secondary-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 10px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(147, 51, 234, 0.3);
+        }
+
+        .menu-item {
+            padding: 12px 14px;
+            margin: 0 0 12px 0;
+            background: var(--inner-bg);
+            border: 2px solid #4a2860;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #d4c5db;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background: #2d1f3d;
+            border-color: #8b5cf6;
+            color: #d4c5db;
+        }
+
+        .menu-item.active {
+            background: #3d2847;
+            border-color: #9333ea;
+            color: #f5f0f8;
+            font-weight: 600;
+        }
+
+        .menu-icon {
+            font-size: 16px;
+        }
+
+        .theme-toggle-sidebar {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .theme-toggle-sidebar label {
+            font-size: 12px;
+            color: #d4c5db;
+        }
+
+        /* DIVIDER */
+        .divider {
+            width: 8px;
+            background: var(--accent);
+            border-radius: 4px;
+            margin: 12px 4px 12px 4px;
+            opacity: 0.6;
+        }
+
+        /* CONTENT AREA */
+        .content {
+            flex: 1;
+            background: var(--secondary-bg);
+            border: 2px solid #8b5cf6;
+            border-radius: 16px;
+            padding: 18px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(147, 51, 234, 0.3);
+        }
+
+        .content-header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--inner-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .option-group-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+
+        .option-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--accent);
+            border-radius: 4px;
+            cursor: pointer;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox.checked {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* TOGGLE SWITCH */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-label {
+            font-size: 13px;
+            color: var(--text-dark);
+            min-width: 40px;
+        }
+
+        .switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #1a1520;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .switch.dark {
+            background: #1a1520;
+        }
+
+        .switch.light {
+            background: #f5f0f8;
+        }
+
+        .switch-content {
+            display: flex;
+            width: 100%;
+            padding: 0 4px;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
+        .switch-icon {
+            font-size: 12px;
+            color: #f5f0f8;
+        }
+
+        .switch-icon.light-mode {
+            color: #1a1520;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b46eff;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 800px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TITLEBAR -->
+        <div class="titlebar">
+            <div class="titlebar-title">ClassicAssist</div>
+            <div class="titlebar-buttons">
+                <button class="titlebar-btn" title="Debug">🐛</button>
+                <button class="titlebar-btn" title="Minimize">−</button>
+                <button class="titlebar-btn" title="Maximize">□</button>
+                <button class="titlebar-btn" title="Close">×</button>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <div class="menu-item active">
+                    <span class="menu-icon">🏠</span>
+                    <span>Generale</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">⚙️</span>
+                    <span>Opzioni</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">⌨️</span>
+                    <span>Tasti Rapidi</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">📜</span>
+                    <span>Macros</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">✨</span>
+                    <span>Skills</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">🤖</span>
+                    <span>Agenti</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">📖</span>
+                    <span>Script Pubblici</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>Item Browser</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">⚔️</span>
+                    <span>PvP</span>
+                </div>
+                <div class="menu-item">
+                    <span class="menu-icon">ℹ️</span>
+                    <span>Info</span>
+                </div>
+
+                <!-- SIDEBAR THEME TOGGLE -->
+                <div class="theme-toggle-sidebar">
+                    <label>Tema</label>
+                    <div class="switch dark" id="sidebarTheme" onclick="toggleTheme()">
+                        <div class="switch-content">
+                            <span class="switch-icon">🌙</span>
+                            <span class="switch-icon light-mode">☀️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="divider"></div>
+
+            <!-- CONTENT -->
+            <div class="content">
+                <div class="content-header">📋 Opzioni Generali</div>
+
+                <!-- THEME TOGGLE OPTION -->
+                <div class="option-group">
+                    <div class="option-group-title">🎨 Tema</div>
+                    <div class="option-item">
+                        <span class="option-label">Tema Scuro/Chiaro</span>
+                        <div class="toggle-switch">
+                            <span class="toggle-label">Tema</span>
+                            <div class="switch dark" id="contentTheme" onclick="toggleTheme()">
+                                <div class="switch-content">
+                                    <span class="switch-icon">🌙</span>
+                                    <span class="switch-icon light-mode">☀️</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OTHER OPTIONS -->
+                <div class="option-group">
+                    <div class="option-group-title">⚙️ Impostazioni</div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox checked">✓</div>
+                            In primo piano
+                        </label>
+                    </div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox"></div>
+                            Riduci nell'area di notifica
+                        </label>
+                    </div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox"></div>
+                            Ritardo azione
+                        </label>
+                        <input type="text" value="0" style="width: 60px; padding: 4px; background: var(--inner-bg); color: var(--text-dark); border: 1px solid var(--border); border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-group-title">🔒 Password Salvate</div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox checked">✓</div>
+                            Abilitato
+                        </label>
+                    </div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox"></div>
+                            Sovrascrivi solo password vuota
+                        </label>
+                    </div>
+
+                    <div class="option-item">
+                        <label class="option-label">
+                            <div class="checkbox"></div>
+                            Autologin
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const sidebarTheme = document.getElementById('sidebarTheme');
+            const contentTheme = document.getElementById('contentTheme');
+
+            // Toggle dark/light class
+            if (body.style.background === 'var(--bg-light)' || body.style.background === '#f5f0f8') {
+                // Switch to dark
+                document.documentElement.style.setProperty('--bg-dark', '#1a1520');
+                document.documentElement.style.setProperty('--bg-light', '#f5f0f8');
+                document.documentElement.style.setProperty('--text-dark', '#f5f0f8');
+                document.documentElement.style.setProperty('--text-light', '#1a1520');
+                body.style.background = 'var(--bg-dark)';
+                sidebarTheme.classList.remove('light');
+                sidebarTheme.classList.add('dark');
+                contentTheme.classList.remove('light');
+                contentTheme.classList.add('dark');
+            } else {
+                // Switch to light
+                document.documentElement.style.setProperty('--bg-dark', '#f5f0f8');
+                document.documentElement.style.setProperty('--bg-light', '#ffffff');
+                document.documentElement.style.setProperty('--text-dark', '#1a1520');
+                document.documentElement.style.setProperty('--text-light', '#f5f0f8');
+                body.style.background = 'var(--bg-dark)';
+                sidebarTheme.classList.remove('dark');
+                sidebarTheme.classList.add('light');
+                contentTheme.classList.remove('dark');
+                contentTheme.classList.add('light');
+            }
+        }
+    </script>
+</body>
+</html>

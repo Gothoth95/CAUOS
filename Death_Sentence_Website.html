@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Sentence - Gilda PvP Ultima Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --primary-purple: #7b2cbf;
+            --accent-red: #d62828;
+            --accent-purple: #b5179e;
+            --text-light: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-black) 0%, #1a0a2e 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 2px solid var(--primary-purple);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(214, 40, 40, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(214, 40, 40, 0.2) 0%, transparent 70%),
+                        linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-red), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(214, 40, 40, 0.8);
+            letter-spacing: 3px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-red));
+            color: var(--text-light);
+            text-decoration: none;
+            border: 2px solid var(--accent-red);
+            border-radius: 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(214, 40, 40, 0.5);
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 40px rgba(214, 40, 40, 0.8), inset 0 0 20px rgba(123, 44, 191, 0.3);
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* SECTIONS */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--accent-red);
+            padding-bottom: 1rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 3px;
+            width: 100px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-red));
+            animation: slideRight 0.8s ease-out;
+        }
+
+        @keyframes slideRight {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: rgba(20, 10, 30, 0.5);
+            border: 2px solid var(--primary-purple);
+            padding: 3rem;
+            border-radius: 0;
+            box-shadow: inset 0 0 20px rgba(123, 44, 191, 0.1);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(123, 44, 191, 0.1);
+            border: 2px solid var(--accent-red);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(214, 40, 40, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(214, 40, 40, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 26, 0.8);
+            border-left: 4px solid var(--primary-purple);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(214, 40, 40, 0.1);
+            transition: width 0.3s ease;
+            z-index: 0;
+        }
+
+        .feature-card:hover {
+            border-left-color: var(--accent-red);
+            transform: translateX(10px);
+        }
+
+        .feature-card:hover::before {
+            width: 100%;
+        }
+
+        .feature-card h3 {
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* MEMBERS SECTION */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .member-card {
+            background: rgba(123, 44, 191, 0.1);
+            border: 2px solid var(--primary-purple);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-red));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-card:hover::before {
+            opacity: 1;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-rank {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* RECRUITMENT SECTION */
+        .recruitment {
+            background: linear-gradient(135deg, rgba(123, 44, 191, 0.2), rgba(214, 40, 40, 0.2));
+            border: 2px solid var(--accent-red);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .recruitment h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-red);
+        }
+
+        .recruitment p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .recruitment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .requirement {
+            background: rgba(10, 10, 10, 0.5);
+            padding: 1rem;
+            border-left: 3px solid var(--primary-purple);
+            transition: all 0.3s ease;
+        }
+
+        .requirement:hover {
+            border-left-color: var(--accent-red);
+            background: rgba(214, 40, 40, 0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 2px solid var(--primary-purple);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-purple);
+            transform: scale(1.2);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px var(--primary-purple),
+                        0 0 20px var(--accent-red);
+        }
+
+        /* LOGO ANIMATIONS */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .logo-image {
+            max-width: 200px;
+            height: auto;
+            animation: logoFloat 3s ease-in-out infinite, logoGlow 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(214, 40, 40, 0.6));
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(214, 40, 40, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(214, 40, 40, 0.9)) drop-shadow(0 0 60px rgba(123, 44, 191, 0.6));
+            }
+        }
+
+        /* BANNER ANIMATIONS */
+        .banner-container {
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 3px solid var(--accent-red);
+            box-shadow: 0 0 30px rgba(214, 40, 40, 0.5), inset 0 0 30px rgba(123, 44, 191, 0.2);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            animation: bannerSlideIn 1s ease-out, bannerPulse 3s ease-in-out infinite;
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
+        }
+
+        .banner-image:hover {
+            filter: brightness(1.1);
+        }
+
+        .banner-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(214, 40, 40, 0.3) 25%,
+                rgba(123, 44, 191, 0.3) 50%,
+                rgba(214, 40, 40, 0.3) 75%,
+                transparent 100%);
+            animation: bannerShine 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes bannerSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bannerPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(214, 40, 40, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(214, 40, 40, 0.7), 0 0 60px rgba(123, 44, 191, 0.5);
+            }
+        }
+
+        @keyframes bannerShine {
+            0%, 100% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+        }
+
+        /* ANIMATED BORDER */
+        .animated-border {
+            position: relative;
+            padding: 2rem;
+            border: 3px solid transparent;
+            background: linear-gradient(rgba(20, 10, 30, 0.5), rgba(20, 10, 30, 0.5)) padding-box,
+                        linear-gradient(135deg, var(--primary-purple), var(--accent-red)) border-box;
+            animation: borderGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* FIRE EFFECT */
+        .fire-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .fire-effect::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(214, 40, 40, 0.6) 0%, transparent 70%);
+            animation: fireFlicker 0.3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fireFlicker {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* GLITCH EFFECT */
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow:
+                    2px 0 0 var(--accent-red),
+                    -2px 0 0 var(--primary-purple);
+            }
+            14% {
+                text-shadow:
+                    2px 0 0 var(--accent-red),
+                    -2px 0 0 var(--primary-purple);
+            }
+            15% {
+                text-shadow:
+                    -2px 0 0 var(--accent-red),
+                    2px 0 0 var(--primary-purple);
+            }
+            49% {
+                text-shadow:
+                    -2px 0 0 var(--accent-red),
+                    2px 0 0 var(--primary-purple);
+            }
+            50% {
+                text-shadow:
+                    2px 0 0 var(--accent-red),
+                    -2px 0 0 var(--primary-purple);
+            }
+            100% {
+                text-shadow:
+                    2px 0 0 var(--accent-red),
+                    -2px 0 0 var(--primary-purple);
+            }
+        }
+
+        .glitch-text {
+            animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">⚔️ DEATH SENTENCE ⚔️</div>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">CHI SIAMO</a></li>
+                <li><a href="#members">ROSTER</a></li>
+                <li><a href="#rules">REGOLAMENTO</a></li>
+                <li><a href="#recruitment">RECRUITMENT</a></li>
+                <li><a href="#contact">CONTATTI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <!-- ANIMATED LOGO -->
+            <div class="logo-container" style="margin-bottom: 2rem;">
+                <svg class="logo-image" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="400" height="400" fill="#0a0a0a" opacity="0.8"/>
+
+                    <!-- SWORD -->
+                    <g id="sword">
+                        <line x1="200" y1="50" x2="200" y2="280" stroke="#d62828" stroke-width="8" stroke-linecap="round"/>
+                        <polygon points="200,50 180,100 220,100" fill="#DAA520"/>
+                        <polygon points="180,280 220,280 200,330" fill="#8B7355"/>
+                        <circle cx="200" cy="290" r="15" fill="#d62828"/>
+                    </g>
+
+                    <!-- DEATH TEXT -->
+                    <text x="200" y="160" font-size="48" font-weight="bold" fill="#d62828" text-anchor="middle" letter-spacing="4">
+                        DEATH
+                    </text>
+                    <text x="200" y="220" font-size="48" font-weight="bold" fill="#b5179e" text-anchor="middle" letter-spacing="4">
+                        SENTENCE
+                    </text>
+
+                    <!-- TAGLINE -->
+                    <text x="200" y="350" font-size="16" fill="#b0b0b0" text-anchor="middle" letter-spacing="2">
+                        THE VERDICT IS FINAL
+                    </text>
+
+                    <!-- DECORATIVE ELEMENTS -->
+                    <circle cx="100" cy="100" r="3" fill="#d62828" opacity="0.6"/>
+                    <circle cx="300" cy="100" r="3" fill="#d62828" opacity="0.6"/>
+                    <circle cx="100" cy="300" r="3" fill="#d62828" opacity="0.6"/>
+                    <circle cx="300" cy="300" r="3" fill="#d62828" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <h1 class="glitch-text">DEATH SENTENCE</h1>
+            <p class="hero-subtitle">⚰️ GILDA PvP ULTIMA ONLINE ⚰️</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                La morte non conosce pietà. Noi siamo la sentenza.
+            </p>
+            <a href="#recruitment" class="cta-button">UNISCITI A NOI</a>
+        </div>
+    </section>
+
+    <!-- ANIMATED BANNER SECTION -->
+    <section style="max-width: 100%; padding: 0; margin: 0;">
+        <div class="banner-container">
+            <svg viewBox="0 0 1600 300" xmlns="http://www.w3.org/2000/svg" class="banner-image">
+                <!-- Sfondo oscuro -->
+                <defs>
+                    <linearGradient id="bannerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1a0a2e;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#0a0a0a;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2a0a3e;stop-opacity:1" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <rect width="1600" height="300" fill="url(#bannerGrad)"/>
+
+                <!-- CASTELLI E FUOCO -->
+                <g opacity="0.3">
+                    <!-- Castello sinistro -->
+                    <polygon points="150,200 150,80 200,50 250,80 250,200" fill="#d62828"/>
+                    <rect x="160" y="100" width="15" height="40" fill="#0a0a0a"/>
+                    <rect x="210" y="100" width="15" height="40" fill="#0a0a0a"/>
+                </g>
+
+                <!-- TITLE PRINCIPALE -->
+                <text x="800" y="120" font-size="96" font-weight="bold" fill="#d62828" text-anchor="middle" letter-spacing="8" filter="url(#glow)">
+                    DEATH
+                </text>
+                <text x="800" y="220" font-size="96" font-weight="bold" fill="#b5179e" text-anchor="middle" letter-spacing="8" filter="url(#glow)">
+                    SENTENCE
+                </text>
+
+                <!-- TAGLINE -->
+                <text x="800" y="270" font-size="24" fill="#b0b0b0" text-anchor="middle" letter-spacing="3">
+                    THE VERDICT IS FINAL. NO ESCAPE. NO MERCY.
+                </text>
+
+                <!-- ELEMENTI DECORATIVI -->
+                <line x1="300" y1="150" x2="1300" y2="150" stroke="#d62828" stroke-width="2" opacity="0.5"/>
+                <circle cx="150" cy="80" r="8" fill="#d62828" opacity="0.6"/>
+                <circle cx="1450" cy="80" r="8" fill="#d62828" opacity="0.6"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <h2 class="section-title">CHI SIAMO</h2>
+        <div class="about">
+            <p>
+                <strong>Death Sentence</strong> è una gilda PvP d'élite nel mondo di Ultima Online.
+                Siamo nati dal fuoco della battaglia e dalla sete di vittoria. Non conosciamo pietà,
+                non conosciamo paura. Ogni nemico è una sfida, ogni battaglia è una gloria.
+            </p>
+            <p>
+                La nostra missione è dominare i campi di battaglia di Britannia. Dalla guerra nei
+                dungeon al controllo dei territori, il nostro nome è sinonimo di morte e distruzione
+                per i nemici, e di protezione per i nostri alleati.
+            </p>
+            <p>
+                Cerchiamo guerrieri coraggiosi, strateghi spregiudicati e combattenti senza compromessi.
+                Se hai il coraggio di combattere al nostro fianco, sei il benvenuto.
+            </p>
+
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">Membri Attivi</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1250+</div>
+                    <div class="stat-label">Vittorie in PvP</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8 ANNI</div>
+                    <div class="stat-label">Di Dominio</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Gloria Eterna</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section>
+        <h2 class="section-title">IL NOSTRO STILE</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>⚔️ PvP HARDCORE</h3>
+                <p>Battaglia senza pietà nei dungeon e nei campi aperti. Solo i forti sopravvivono.</p>
+            </div>
+            <div class="feature-card">
+                <h3>👥 FRATELLANZA</h3>
+                <p>Protezione totale dei nostri membri. Chi attacca uno, affronta l'intera gilda.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 STRATEGIA</h3>
+                <p>Ogni battaglia è pianificata. Tattica e coordinamento sono le nostre armi.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🏰 CONTROLLO</h3>
+                <p>Dominiamo i nostri territori. Nessuno entra o esce senza il nostro permesso.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌙 24/7 ATTIVI</h3>
+                <p>La gilda non dorme mai. Sempre guerrieri pronti al combattimento.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ ELITE</h3>
+                <p>Solo i migliori si uniscono a noi. Standard alti, risultati eccezionali.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROSTER -->
+    <section id="members">
+        <h2 class="section-title">ROSTER DELLA GILDA</h2>
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-name">⚔️ DEATH SEEKER</div>
+                <div class="member-rank">Guildmaster</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">🗡️ DARK WARRIOR</div>
+                <div class="member-rank">Officer</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">💀 SHADOW LORD</div>
+                <div class="member-rank">Officer</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">🔥 INFERNO KNIGHT</div>
+                <div class="member-rank">Generale</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">⚡ STORM BRINGER</div>
+                <div class="member-rank">Generale</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">🦇 NIGHT HUNTER</div>
+                <div class="member-rank">Guerriero</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">👻 PHANTOM BLADE</div>
+                <div class="member-rank">Guerriero</div>
+            </div>
+            <div class="member-card">
+                <div class="member-name">🌑 VOID WALKER</div>
+                <div class="member-rank">Guerriero</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RULES -->
+    <section id="rules">
+        <h2 class="section-title">REGOLAMENTO</h2>
+        <div class="about">
+            <h3 style="color: var(--accent-red); margin-bottom: 1rem;">Codice d'Onore di Death Sentence</h3>
+            <div class="recruitment-list">
+                <div class="requirement">
+                    <strong>1. LEALTÀ ASSOLUTA</strong><br>
+                    La gilda viene prima di tutto. Nessun tradimento tollerato.
+                </div>
+                <div class="requirement">
+                    <strong>2. RISPETTO DEI FRATELLI</strong><br>
+                    I membri di Death Sentence sono sacri. Chi li attacca muore.
+                </div>
+                <div class="requirement">
+                    <strong>3. PARTECIPAZIONE ATTIVA</strong><br>
+                    Almeno 3 volte a settimana per mantenere l'iscrizione.
+                </div>
+                <div class="requirement">
+                    <strong>4. SKILL MINIMO</strong><br>
+                    Livello skill 60+ per il combattimento. Altre classi hanno requisti diversi.
+                </div>
+                <div class="requirement">
+                    <strong>5. COMUNICAZIONE</strong><br>
+                    Discord è obbligatorio. Coordinate le azioni con gli officer.
+                </div>
+                <div class="requirement">
+                    <strong>6. NO GRIEFING</strong><br>
+                    Attacchiamo nemici dichiarati, non innocenti senza motivo.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECRUITMENT -->
+    <section id="recruitment">
+        <div class="recruitment">
+            <h2>🔥 RECRUITMENT APERTO 🔥</h2>
+            <p>Cerchiamo guerrieri coraggiosi per unirsi alle nostre fila</p>
+
+            <div class="recruitment-list">
+                <div class="requirement">
+                    <strong>✅ SKILL MINIMO 50+</strong><br>
+                    Preferibilmente combattenti esperti
+                </div>
+                <div class="requirement">
+                    <strong>✅ ATTIVO 3+ VOLTE SETTIMANALI</strong><br>
+                    La frequenza è importante per il team
+                </div>
+                <div class="requirement">
+                    <strong>✅ DISCORD OBBLIGATORIO</strong><br>
+                    Coordinamento e comunicazione essenziali
+                </div>
+                <div class="requirement">
+                    <strong>✅ ETA' 16+</strong><br>
+                    Maturità e responsabilità richieste
+                </div>
+            </div>
+
+            <a href="#contact" class="cta-button" style="margin-top: 2rem;">CANDIDATI ORA</a>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section>
+        <h2 class="section-title">GALLERY & MEDIA</h2>
+
+        <!-- LOGO SHOWCASE -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h3 style="color: var(--accent-red); margin-bottom: 2rem; font-size: 2rem;">LOGHI UFFICIALI</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; align-items: center; justify-items: center;">
+                <!-- Logo 1 -->
+                <div class="animated-border">
+                    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: 200px; animation: logoFloat 3s ease-in-out infinite, logoGlow 2s ease-in-out infinite;">
+                        <circle cx="150" cy="150" r="140" fill="none" stroke="#d62828" stroke-width="3"/>
+                        <text x="150" y="130" font-size="40" font-weight="bold" fill="#d62828" text-anchor="middle">DEATH</text>
+                        <text x="150" y="180" font-size="40" font-weight="bold" fill="#b5179e" text-anchor="middle">SENTENCE</text>
+                        <line x1="50" y1="150" x2="250" y2="150" stroke="#d62828" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+
+                <!-- Logo 2 - Sword -->
+                <div class="animated-border">
+                    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" style="width: 150px; height: 300px; animation: logoFloat 3s ease-in-out infinite 0.5s, logoGlow 2s ease-in-out infinite;">
+                        <line x1="100" y1="30" x2="100" y2="300" stroke="#d62828" stroke-width="10" stroke-linecap="round"/>
+                        <polygon points="100,30 70,80 130,80" fill="#DAA520"/>
+                        <polygon points="70,300 130,300 100,360" fill="#8B7355"/>
+                        <circle cx="100" cy="320" r="20" fill="#d62828"/>
+                        <text x="100" y="390" font-size="20" fill="#b5179e" text-anchor="middle" font-weight="bold">DEATH</text>
+                    </svg>
+                </div>
+
+                <!-- Logo 3 - Circle -->
+                <div class="animated-border">
+                    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: 200px; animation: logoFloat 3s ease-in-out infinite 1s, logoGlow 2s ease-in-out infinite;">
+                        <defs>
+                            <filter id="glow-logo">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <circle cx="150" cy="150" r="130" fill="none" stroke="#d62828" stroke-width="4" opacity="0.8"/>
+                        <circle cx="150" cy="150" r="120" fill="none" stroke="#b5179e" stroke-width="2" opacity="0.6"/>
+                        <text x="150" y="160" font-size="50" font-weight="bold" fill="#d62828" text-anchor="middle" letter-spacing="2" filter="url(#glow-logo)">DS</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANNER SHOWCASE -->
+        <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-red); margin-bottom: 1rem; font-size: 2rem;">BANNER PRINCIPALE</h3>
+            <div class="banner-container">
+                <svg viewBox="0 0 1200 250" xmlns="http://www.w3.org/2000/svg" class="banner-image">
+                    <defs>
+                        <linearGradient id="banner-grad-main" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2a0a3e;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#0a0a0a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1a0a2e;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="1200" height="250" fill="url(#banner-grad-main)"/>
+
+                    <!-- FUOCO E EFFETTI -->
+                    <g opacity="0.2">
+                        <polygon points="100,200 80,100 120,100 100,180 150,200" fill="#d62828"/>
+                        <polygon points="1100,200 1080,100 1120,100 1100,180 1050,200" fill="#d62828"/>
+                    </g>
+
+                    <!-- TITLE -->
+                    <text x="600" y="100" font-size="80" font-weight="bold" fill="#d62828" text-anchor="middle" letter-spacing="6">
+                        DEATH SENTENCE
+                    </text>
+                    <text x="600" y="190" font-size="24" fill="#b0b0b0" text-anchor="middle" letter-spacing="3">
+                        ⚰️ GILDA PvP DOMINA I CAMPI DI BATTAGLIA ⚰️
+                    </text>
+
+                    <!-- LINEA DECORATIVA -->
+                    <line x1="200" y1="210" x2="1000" y2="210" stroke="#d62828" stroke-width="2" opacity="0.6"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="section-title">CONTATTI</h2>
+        <div class="about">
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Interessato a unirti a <strong>Death Sentence</strong>?<br>
+                Contattaci tramite i seguenti canali:
+            </p>
+
+            <div class="recruitment-list">
+                <div class="requirement" style="text-align: center;">
+                    <strong>📊 DISCORD SERVER</strong><br>
+                    Il nostro quartier generale<br>
+                    <span style="color: var(--accent-red);">discord.gg/deathsentence</span>
+                </div>
+                <div class="requirement" style="text-align: center;">
+                    <strong>🎮 IN-GAME</strong><br>
+                    Parla con DEATH SEEKER<br>
+                    <span style="color: var(--accent-red);">Sempre disponibile</span>
+                </div>
+                <div class="requirement" style="text-align: center;">
+                    <strong>💬 FORUM</strong><br>
+                    Discussioni e aggiornamenti<br>
+                    <span style="color: var(--accent-red);">forum.deathsentence.uo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <h3 style="color: var(--accent-red); margin-bottom: 1rem;">⚔️ DEATH SENTENCE ⚔️</h3>
+            <p style="margin-bottom: 1rem;">
+                Una gilda nata dal fuoco, temuta nei campi di battaglia, leale ai propri membri.
+            </p>
+            <div class="social-links">
+                <a href="#">Discord</a>
+                <a href="#">Forum</a>
+                <a href="#">In-Game</a>
+                <a href="#">YouTube</a>
+            </div>
+            <p style="margin-top: 2rem; border-top: 1px solid var(--primary-purple); padding-top: 1rem;">
+                © 2024 Death Sentence - Gilda PvP Ultima Online<br>
+                <span style="font-size: 0.9rem;">La morte non conosce pietà. Noi siamo la sentenza.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
