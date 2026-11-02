@@ -117,6 +117,22 @@ namespace ClassicAssist.Tests
         }
 
         [TestMethod]
+        public void UOSLexerPreservesEmptyQuotedArguments()
+        {
+            foreach ( string emptyString in new[] { "''", "\"\"" } )
+            {
+                UOSTeamScriptRunner runner = new UOSTeamScriptRunner();
+                Assert.IsTrue( runner.LoadScript( $"if true == {emptyString}\nstop\nendif" ) );
+
+                InvalidOperationException exception =
+                    Assert.ThrowsException<InvalidOperationException>( () => runner.ExecuteAll() );
+
+                StringAssert.Contains( exception.Message, "Boolean values only support" );
+                Assert.IsFalse( exception.Message.Contains( "right side of a comparison must be one value" ) );
+            }
+        }
+
+        [TestMethod]
         public void UOSWhileFalseSkipsItsBody()
         {
             UOSTeamScriptRunner runner = new UOSTeamScriptRunner();

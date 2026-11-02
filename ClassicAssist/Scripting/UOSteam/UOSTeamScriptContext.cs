@@ -416,17 +416,20 @@ namespace ClassicAssist.Scripting.UOSteam
             string token = string.Empty;
             bool insideSingleQuote = false;
             bool insideDoubleQuote = false;
+            bool tokenStarted = false;
 
             foreach ( char ch in line )
             {
                 if ( ch == '\'' && !insideDoubleQuote )
                 {
                     insideSingleQuote = !insideSingleQuote;
+                    tokenStarted = true;
 
-                    if ( !insideSingleQuote && token.Length > 0 )
+                    if ( !insideSingleQuote )
                     {
                         result.Add( token );
                         token = string.Empty;
+                        tokenStarted = false;
                     }
 
                     continue;
@@ -435,11 +438,13 @@ namespace ClassicAssist.Scripting.UOSteam
                 if ( ch == '"' && !insideSingleQuote )
                 {
                     insideDoubleQuote = !insideDoubleQuote;
+                    tokenStarted = true;
 
-                    if ( !insideDoubleQuote && token.Length > 0 )
+                    if ( !insideDoubleQuote )
                     {
                         result.Add( token );
                         token = string.Empty;
+                        tokenStarted = false;
                     }
 
                     continue;
@@ -447,19 +452,21 @@ namespace ClassicAssist.Scripting.UOSteam
 
                 if ( char.IsWhiteSpace( ch ) && !insideSingleQuote && !insideDoubleQuote )
                 {
-                    if ( token.Length > 0 )
+                    if ( tokenStarted )
                     {
                         result.Add( token );
                         token = string.Empty;
+                        tokenStarted = false;
                     }
 
                     continue;
                 }
 
                 token += ch;
+                tokenStarted = true;
             }
 
-            if ( token.Length > 0 )
+            if ( tokenStarted )
             {
                 result.Add( token );
             }
