@@ -1,0 +1,257 @@
+# ClassicAssist UOS compatibility smoke test
+# Run while logged into a character. Results appear as system messages.
+# Automatic section uses local lists/timers and read-only character queries.
+
+sysmsg 'UOS smoke test started.'
+
+# Inline statements and semicolons inside quoted text.
+sysmsg 'Semicolon inside this text; must stay in the message.'; sysmsg 'Inline statement separator passed.'
+
+# Boolean conditions, not, elseif, else, and numeric comparisons.
+if false
+  sysmsg 'FAIL: false condition entered the if branch.'
+elseif true and not false
+  sysmsg 'PASS: if/elseif/else and boolean operators.'
+else
+  sysmsg 'FAIL: elseif branch was skipped.'
+endif
+
+# The false while condition must skip its body.
+while false
+  sysmsg 'FAIL: while false executed its body.'
+endwhile
+sysmsg 'PASS: while false skipped its body.'
+
+# Numeric for loop and list operations.
+createlist 'ca_uos_smoke_list'
+pushlist 'ca_uos_smoke_list' 'back'
+pushlist 'ca_uos_smoke_list' 'front' 'front'
+for 3
+  pushlist 'ca_uos_smoke_list' 'loop'
+endfor
+if listexists 'ca_uos_smoke_list' and list 'ca_uos_smoke_list' == 5 and inlist 'ca_uos_smoke_list' 'front'
+  sysmsg 'PASS: create/push/front/list/listexists/inlist/for.'
+else
+  sysmsg 'FAIL: list creation, insertion, query, or for loop.'
+endif
+poplist 'ca_uos_smoke_list' 'front'
+if list 'ca_uos_smoke_list' == 4
+  sysmsg 'PASS: poplist front.'
+else
+  sysmsg 'FAIL: poplist front.'
+endif
+clearlist 'ca_uos_smoke_list'
+if list 'ca_uos_smoke_list' == 0
+  sysmsg 'PASS: clearlist.'
+else
+  sysmsg 'FAIL: clearlist.'
+endif
+removelist 'ca_uos_smoke_list'
+if not listexists 'ca_uos_smoke_list'
+  sysmsg 'PASS: removelist.'
+else
+  sysmsg 'FAIL: removelist.'
+endif
+
+# Macro aliases are temporary and removed before the script ends.
+setalias 'ca_uos_smoke_alias' 12345
+if findalias 'ca_uos_smoke_alias'
+  sysmsg 'PASS: setalias/findalias.'
+else
+  sysmsg 'FAIL: setalias/findalias.'
+endif
+unsetalias 'ca_uos_smoke_alias'
+if not findalias 'ca_uos_smoke_alias'
+  sysmsg 'PASS: unsetalias.'
+else
+  sysmsg 'FAIL: unsetalias.'
+endif
+
+# Timer commands use the same named timer store as UOS timer expressions.
+createtimer 'CAUOS_20261102_SmokeTimer'
+if timerexists 'CAUOS_20261102_SmokeTimer'
+  sysmsg 'PASS: createtimer/timerexists.'
+else
+  sysmsg 'FAIL: createtimer/timerexists.'
+endif
+settimer 'CAUOS_20261102_SmokeTimer' 0
+if timer 'CAUOS_20261102_SmokeTimer' >= 0
+  sysmsg 'PASS: settimer/timer expression/comparison.'
+else
+  sysmsg 'FAIL: timer expression or comparison.'
+endif
+removetimer 'CAUOS_20261102_SmokeTimer'
+if not timerexists 'CAUOS_20261102_SmokeTimer'
+  sysmsg 'PASS: removetimer.'
+else
+  sysmsg 'FAIL: removetimer.'
+endif
+
+# Read-only player stats. Log in before running this section.
+if hits >= 0 and maxhits >= 0 and diffhits >= 0 and stam >= 0 and maxstam >= 0 and mana >= 0 and maxmana >= 0
+  sysmsg 'PASS: hits/maxhits/diffhits/stam/maxstam/mana/maxmana.'
+else
+  sysmsg 'FAIL: one or more health/stamina/mana expressions.'
+endif
+if weight >= 0 and maxweight >= 0 and diffweight >= 0 and followers >= 0 and maxfollowers >= 0 and gold >= 0 and luck >= 0
+  sysmsg 'PASS: weight/followers/gold/luck expressions.'
+else
+  sysmsg 'FAIL: one or more weight/follower/gold/luck expressions.'
+endif
+if str >= 0 and dex >= 0 and int >= 0 and physical >= 0 and fire >= 0 and cold >= 0 and poison >= 0 and energy >= 0
+  sysmsg 'PASS: attributes and resistance expressions.'
+else
+  sysmsg 'FAIL: one or more attribute/resistance expressions.'
+endif
+
+# These predicates depend on the character state; either result is valid.
+if dead 'self' or not dead 'self'
+  sysmsg 'PASS: dead predicate evaluated.'
+endif
+if poisoned 'self' or not poisoned 'self'
+  sysmsg 'PASS: poisoned predicate evaluated.'
+endif
+if war 'self' or not war 'self'
+  sysmsg 'PASS: war predicate evaluated.'
+endif
+if yellowhits 'self' or not yellowhits 'self'
+  sysmsg 'PASS: yellowhits predicate evaluated.'
+endif
+if hidden 'self' or not hidden 'self'
+  sysmsg 'PASS: hidden predicate evaluated.'
+endif
+if paralyzed 'self' or not paralyzed 'self'
+  sysmsg 'PASS: paralyzed predicate evaluated.'
+endif
+if mounted 'self' or not mounted 'self'
+  sysmsg 'PASS: mounted predicate evaluated.'
+endif
+if criminal 'self' or not criminal 'self'
+  sysmsg 'PASS: criminal predicate evaluated.'
+endif
+if gray 'self' or not gray 'self'
+  sysmsg 'PASS: gray predicate evaluated.'
+endif
+if innocent 'self' or not innocent 'self'
+  sysmsg 'PASS: innocent predicate evaluated.'
+endif
+if murderer 'self' or not murderer 'self'
+  sysmsg 'PASS: murderer predicate evaluated.'
+endif
+if enemy 'self' or not enemy 'self'
+  sysmsg 'PASS: enemy predicate evaluated.'
+endif
+if friend 'self' or not friend 'self'
+  sysmsg 'PASS: friend predicate evaluated.'
+endif
+if inparty 'self' or not inparty 'self'
+  sysmsg 'PASS: inparty predicate evaluated.'
+endif
+
+# Read-only entity, skill, inventory, journal, gump, and target queries.
+if name 'self' != ''
+  sysmsg 'PASS: name expression.'
+else
+  sysmsg 'FAIL: name expression returned an empty name.'
+endif
+if direction 'self' != '' and directionname 'self' != ''
+  sysmsg 'PASS: direction/directionname expressions.'
+else
+  sysmsg 'FAIL: direction/directionname expressions.'
+endif
+if distance 'self' >= 0 and graphic 'self' >= 0 and hue 'self' >= 0
+  sysmsg 'PASS: distance/graphic/hue expressions.'
+else
+  sysmsg 'FAIL: distance/graphic/hue expressions.'
+endif
+if x 'self' >= 0 and y 'self' >= 0 and z 'self' >= 0
+  sysmsg 'PASS: x/y/z expressions.'
+else
+  sysmsg 'FAIL: x/y/z expressions.'
+endif
+if inrange 'self' 0 or not inrange 'self' 0
+  sysmsg 'PASS: inrange expression.'
+endif
+if findlayer 'Backpack' 'self' or not findlayer 'Backpack' 'self'
+  sysmsg 'PASS: findlayer expression.'
+endif
+if skillvalue 'Magery' >= 0 and skillbase 'Magery' >= 0 and skillstate 'Magery' != ''
+  sysmsg 'PASS: skill/skillbase/skillstate expressions.'
+else
+  sysmsg 'FAIL: skill expressions.'
+endif
+if counttype 0x0EED >= 0 and counttypeground 0x0EED -1 0 >= 0
+  sysmsg 'PASS: counttype/counttypeground expressions.'
+else
+  sysmsg 'FAIL: counttype/counttypeground expressions.'
+endif
+if targetexists or not targetexists
+  sysmsg 'PASS: targetexists expression.'
+endif
+if gumpexists any or not gumpexists any
+  sysmsg 'PASS: gumpexists expression.'
+endif
+if journal 'CAUOS UOS smoke test - no matching journal entry expected' or not journal 'CAUOS UOS smoke test - no matching journal entry expected'
+  sysmsg 'PASS: journal search expression.'
+endif
+if buffexists 'CAUOS UOS smoke test - no matching buff expected' or not buffexists 'CAUOS UOS smoke test - no matching buff expected'
+  sysmsg 'PASS: buffexists expression.'
+endif
+
+# Clean up temporary state created by this smoke test.
+sysmsg 'UOS smoke test finished. Review all FAIL messages above.'
+stop
+
+# MANUAL ACTION TESTS - deliberately disabled.
+# Do not uncomment or run these as a batch: several interact with the game,
+# consume resources, change combat state, or move/equip items.
+# Try one at a time in a safe area with a disposable test item where needed.
+#
+# Movement:
+# walk north
+# run south
+# turn east
+#
+# Targeting/combat (may attack or change combat state):
+# getenemy 'closest' 'nearest' 'grey'
+# attack 'last'
+# setability 'secondary' 'off'
+# warmode 'off'
+# cast 'Consecrate Weapon'
+# target 'self'
+# waitfortarget 100
+#
+# Items/equipment (may use, equip, or move objects):
+# These two searches also update the reserved "found" alias.
+# findtype 65535 -1 ground -1 0
+# findobject 'self'
+# clickobject 0xSERIAL
+# useobject 0xSERIAL
+# usetype 0xGRAPHIC -1 'backpack'
+# useonce 0xGRAPHIC
+# moveitem 0xITEM_SERIAL 0xCONTAINER_SERIAL
+# moveitemoffset 0xITEM_SERIAL 1 0 0
+# movetypeoffset 0xGRAPHIC ground 1 0 0
+# clearusequeue
+# clearhands 'both'
+# bandageself
+# togglemounted
+# dress 'AGENT_NAME'
+# undress 'AGENT_NAME'
+#
+# Skills, properties, and UI waits (may change settings or wait for input):
+# useskill 'Meditation'
+# setskill 'Magery' 'up'
+# waitforcontents 'backpack' 100
+# waitforproperties 'self' 100
+# waitforgump 0 100
+# replygump 0 1
+# closegump 0
+# waitforprompt 100
+# cancelprompt
+# waitforjournal 'text to find' 100
+# clearjournal
+#
+# Utility commands (contact the shard only when deliberately testing):
+# ping
+# resync

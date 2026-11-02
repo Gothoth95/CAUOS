@@ -20,6 +20,8 @@ Macros have similar function names as UOSteam but uses Python as the language, t
 
 ClassicAssist can also load `.uos` files placed in its `Macros` folder and run them from the Macros tab using its native UOS script runner. The editor recognizes supported UOS commands pasted directly into a macro as well. Supported syntax currently includes semicolon-separated statements, `if`/`elseif`/`else`/`endif` (including `else if`), `while`/`endwhile`, numeric `for`/`endfor` loops, script-local list commands and queries (`list`, `inlist`, `listexists`), timer, buff, mobile-stat, skill and object-search conditions (including list-based `findtype`), basic numeric comparisons and `and`/`or`, and a subset of game actions such as `getenemy`, `attack`, `setability`, `warmode`, `cast`, object use/movement, `clickobject`, walking, dress-agent actions, gump/prompt waits, `useskill`, and `bandageself`. Command coverage is still partial, so not every original UOSteam script is compatible yet.
 
+Testers can use [`UOS-Test/UOS_Compatibility_SmokeTest.uos`](./UOS-Test/UOS_Compatibility_SmokeTest.uos); setup and safety notes are in [`UOS-Test/README.md`](./UOS-Test/README.md).
+
 
 ![assist2](https://user-images.githubusercontent.com/6239195/73602829-d8166e80-45b4-11ea-8132-61c29fce3862.png)
 

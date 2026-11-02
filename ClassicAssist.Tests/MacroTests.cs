@@ -296,6 +296,20 @@ namespace ClassicAssist.Tests
         }
 
         [TestMethod]
+        public void UOSCompatibilitySmokeTestScriptLoads()
+        {
+            string scriptPath = Path.GetFullPath( Path.Combine( AppDomain.CurrentDomain.BaseDirectory,
+                "..", "..", "..", "..", "UOS-Test", "UOS_Compatibility_SmokeTest.uos" ) );
+            Assert.IsTrue( File.Exists( scriptPath ), $"Smoke test script not found: {scriptPath}" );
+
+            string script = File.ReadAllText( scriptPath );
+            Assert.IsTrue( UOSTeamScriptRunner.LooksLikeUOScript( script ) );
+
+            UOSTeamScriptRunner runner = new UOSTeamScriptRunner();
+            Assert.IsTrue( runner.LoadScript( script, scriptPath ) );
+        }
+
+        [TestMethod]
         public void UOSDetectionSkipsLeadingCommentsAndRecognizesActionCommands()
         {
             Assert.IsTrue( UOSTeamScriptRunner.LooksLikeUOScript(
